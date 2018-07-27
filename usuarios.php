@@ -6,6 +6,16 @@ if(isset($_SESSION['id_usuario'])){$id_usuario = $_SESSION['id_usuario'];}else{$
 if(isset($_SESSION['primeiro_nome'])){$primeiro_nome = $_SESSION['primeiro_nome'] ;}else{$primeiro_nome ='';}
 if(isset($_SESSION['nivel'])){$nivel = $_SESSION['nivel'] ;}else{$nivel ='';}
 
+//Somente o administrador com nível 2 pode ver esta página
+
+if(isset($_SESSION['nivel'])){$nivel = $_SESSION['nivel'] ;}else{$nivel ='';}
+if($nivel !='2'){
+    header('location:index.php');
+}
+
+
+
+
 
 if(isset($_GET['busca'])){$busca = $_GET['busca'];}else{$busca='' ;}
 $busca = $conex->mysqli->real_escape_string($busca);
@@ -16,15 +26,15 @@ $busca = $conex->mysqli->real_escape_string($busca);
 
 $pagina =explode("/", $_SERVER['PHP_SELF']);
 $pagina = end( $pagina);
-if(isset($_GET['sort'])) { $sort = $_GET['sort']; } else { $sort = "id_publicacao desc"; }
+if(isset($_GET['sort'])) { $sort = $_GET['sort']; } else { $sort = "id_usuario"; }
 if(isset($_GET['p'])) {$p = $_GET['p'];} //pagina atual
 if(isset($p)) { $p = $p; } else { $p = 1; }
 $qnt = 5;
 $inicio = ($p*$qnt) - $qnt;
-$sql_select = "SELECT id_publicacao, id_publicacao_tipo, id_usuario, titulo, descricao, tamanho, url, contador, arquivo, data  FROM rede_publicacoes where  titulo like '%".$busca."%' or descricao like '%".$busca."%' or url like '%".$busca."%' or arquivo like '%".$busca."%' or data  like '%".$busca."%' order by ".$sort." LIMIT $inicio, $qnt"; 
+$sql_select = "SELECT *  FROM rede_usuarios where  nome like '%".$busca."%' or email like '%".$busca."%'  order by ".$sort." LIMIT $inicio, $qnt"; 
 $sql_query = mysqli_query($conex->mysqli,$sql_select);
 
-$sql_select_all = "SELECT id_publicacao, id_publicacao_tipo, id_usuario, titulo, descricao, tamanho, url, contador, arquivo, data FROM rede_publicacoes where  titulo like '%".$busca."%' or descricao like '%".$busca."%' or url like '%".$busca."%' or arquivo like '%".$busca."%' or data like '%".$busca."%'  "; 
+$sql_select_all = "SELECT * FROM rede_usuarios where  nome like '%".$busca."%' or email like '%".$busca."%'  "; 
 $sql_query_all = mysqli_query($conex->mysqli,$sql_select_all);
 $total_registros = mysqli_num_rows($sql_query_all); 
 $pags = ceil($total_registros/$qnt); 
@@ -58,8 +68,8 @@ $max_links = 5;
 <div class="content">  
     
      <div class="busca-campo">
-        <form action="busca.php" method="get">
-            <input type="text" value="<?php echo $busca?>" name="busca" placeholder="PESQUISAR" class="input-default"  >
+        <form action="usuarios.php" method="get">
+            <input type="text" value="<?php echo $busca?>" name="busca" placeholder=" PESQUISAR USUÁRIOS " class="input-default"  >
              
         <input type="submit" value=" PESQUISAR " class="button-default" ></form>
     </div>
@@ -68,7 +78,7 @@ $max_links = 5;
     
  <div class="busca-resultado">
      
-     <p>Resultado da busca por "<b><?php echo $busca?></b>". (<?php echo $total_registros?>) registro(s) encontrado(s). </p>
+     <p>Resultado da busca por usuários "<b><?php echo $busca?></b>". (<?php echo $total_registros?>) registro(s) encontrado(s). </p>
      
      
      
@@ -76,20 +86,14 @@ $max_links = 5;
      
      
         
-     <div class="block-search"><p> <span class="title-search"><?php echo $dados['titulo']?></span> <br> <?php echo $dados['descricao']?> <br>
-             <?php if($dados['url']!=''){?><a href='<?php echo $dados['url']?>' target='blank'><i class="fas fa-link"></i> <?php echo $dados['url'];}?></a>
+     <div class="block-search"><p> <span class="title-search"><?php echo $dados['nome']?></span> <br> <?php echo $dados['email']?> 
              
-             <?php if($dados['arquivo']!=''){?>Arquivo: <?php echo $dados['arquivo']?> / Tamanho: <?php echo $dados['tamanho'];?> bytes <br> <a href="arquivos/<?php echo $dados['arquivo']?>" target="_blank"><i class="fas fa-cloud-download-alt"></i> Download</a><?php }?>  <i id="vi<?php echo $dados['id_publicacao']?>" class="far fa-eye <?php if($dados['contador'] >0){echo "green";}else {echo "grey";}?>"></i>  <a href="javascript:;" onclick="set_vi('<?php echo $dados['id_publicacao']?>')"> Vi</a>
+         
          </p>
              <p class='bottom-search'>
-<?php
-$sql_tipo ="SELECT tipo from rede_publicacao_tipo where id_publicacao_tipo ='".$dados['id_publicacao_tipo']."'";
-$sql_tipo = mysqli_query($conex->mysqli,$sql_tipo);
-$dados_tipo = $sql_tipo->fetch_assoc();
-echo '['.$dados_tipo['tipo'].'] ';
 
-?>
- <?php echo date('d/m/Y H:i', strtotime($dados['data']))?>  <?php if($dados['id_usuario'] == $id_usuario or $nivel =='2'){?> <a href="editar.php?id_publicacao=<?php echo $dados['id_publicacao']?>">editar</a><?php }?>   </p></div>
+
+   <a href="editar_usuario.php?id_usuario=<?php echo $dados['id_usuario']?>"><i class="far fa-edit"></i> editar usuário</a>   </p></div>
     
     
       <?php }?>

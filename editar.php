@@ -4,6 +4,7 @@ include_once 'database-class.php';
 if (!isset($_SESSION)) {session_start();}
 if(isset($_SESSION['id_usuario'])){$id_usuario = $_SESSION['id_usuario'];}else{$id_usuario='' ;}
 if(isset($_SESSION['primeiro_nome'])){$primeiro_nome = $_SESSION['primeiro_nome'] ;}else{$primeiro_nome ='';}
+if(isset($_SESSION['nivel'])){$nivel = $_SESSION['nivel'] ;}else{$nivel ='';}
 
 //Se usuário não estiver logado
 if($id_usuario ==''){header('Location:login.php');}
@@ -23,8 +24,8 @@ $descricao = $dados['descricao'];
 $url = $dados['url'];
 $arquivo = $dados['arquivo'];
 
-//Somente o dono da publicação pode alterá-la
-if($id_usuario_publicacao != $id_usuario){
+//Somente o dono da publicação pode alterá-la ou o admin
+if($id_usuario_publicacao != $id_usuario and $nivel =='1'){
     header('Location:index.php');
 }
 

@@ -4,6 +4,7 @@ include_once 'database-class.php';
 if (!isset($_SESSION)) {session_start();}
 if(isset($_SESSION['id_usuario'])){$id_usuario = $_SESSION['id_usuario'];}else{$id_usuario='' ;}
 if(isset($_SESSION['primeiro_nome'])){$primeiro_nome = $_SESSION['primeiro_nome'] ;}else{$primeiro_nome ='';}
+if(isset($_SESSION['nivel'])){$nivel = $_SESSION['nivel'] ;}else{$nivel ='';}
 
 //Se usuário não estiver logado
 if($id_usuario ==''){header('Location:login.php');}

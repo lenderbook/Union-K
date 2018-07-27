@@ -20,7 +20,7 @@ if(isset($_SESSION['nivel'])){$nivel = $_SESSION['nivel'] ;}else{$nivel ='';}
 <meta name="theme-color" content="#A2BE7A">
 <link rel=stylesheet href="css/main.css?<?php echo microtime();?>" type="text/css">
 <script language="javascript" src="javascript/ajax.js"></script>
-<script language="javascript" src="javascript/cadastro.js?<?php echo microtime()?>"></script>
+<script language="javascript" src="javascript/lembrar.js?<?php echo microtime()?>"></script>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
@@ -38,37 +38,26 @@ if(isset($_SESSION['nivel'])){$nivel = $_SESSION['nivel'] ;}else{$nivel ='';}
     <div class="login-div">
         <form >
             
-            <p><i class="fas fa-user-alt"></i> CADASTRO</p>
-            <p>Informe seus dados e clique em " Cadastrar ".</p>
-            
-            <p>Nome</p>
-            <input type="text" value="" name="nome" id="nome" placeholder="Seu nome" class="input-default"  size="50" >
-            
-            
-            
+            <p><i class="fas fa-lock-open"></i> LOGIN</p>
+            <p>Informe seu e-mail e clique em "Lembrar senha"</p>
             <p>E-mail</p>
-            <input type="text" value="" name="email" id="email" placeholder="email" class="input-default" size="50"  >
+            <input type="text" value="" name="email" id="email" placeholder="email" class="input-default"  >
             
-            <p>Senha</p>
-            <input type="password" value="" name="senha" id="senha" placeholder="senha" class="input-default"  >
-            
-            <p>Confirme sua senha</p>
-            <input type="password" value="" name="senha2" id="senha2" placeholder="Confirme sua senha" class="input-default"  >
-            
-            <br> 
-            
-            <p>Lembrete de senha</p>
-            <input type="text" value="" name="lembrete_senha" id="lembrete_senha" placeholder="Para ajudar a lembrar " class="input-default"  >
-            
-            <br> 
-            
-            
-        <input type="button" value=" CADASTRAR " class="button-default" onclick="cadastro()"></form>
-        <div id="page-response"></div>
+            <br>
+        <input type="button" value=" LEMBRAR SENHA " class="button-default" onclick="lembrar()"></form>
+        <div id="page-response">&nbsp;</div>
+        
     </div>
      
  
-
+    <div class="cadastre-div">
+        
+        <p>CADASTRE-SE</p>
+        <p>        Para fazer publicações você precisa ter uma conta de acesso. É simples e rápido.</p>
+        
+        <input type="button" value=" CADASTRO " class="button-default" onclick="cadastro()">
+        
+    </div>
  
  
  

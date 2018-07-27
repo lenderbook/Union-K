@@ -4,7 +4,7 @@ include_once 'database-class.php';
 if (!isset($_SESSION)) {session_start();}
 if(isset($_SESSION['id_usuario'])){$id_usuario = $_SESSION['id_usuario'];}else{$id_usuario='' ;}
 if(isset($_SESSION['primeiro_nome'])){$primeiro_nome = $_SESSION['primeiro_nome'] ;}else{$primeiro_nome ='';}
-
+if(isset($_SESSION['nivel'])){$nivel = $_SESSION['nivel'] ;}else{$nivel ='';}
 
 
 
@@ -47,7 +47,8 @@ if(isset($_SESSION['primeiro_nome'])){$primeiro_nome = $_SESSION['primeiro_nome'
             <input type="password" value="" name="senha" id="senha" placeholder="senha" class="input-default"  >
             <br> 
         <input type="button" value=" ENTRAR " class="button-default" onclick="login()"></form>
-        <div id="page-response"></div>
+        <div id="page-response">&nbsp;</div>
+        <p>Se esqueceu sua senha <a href="lembrar.php"> clique aqui.</a></p>
     </div>
      
  

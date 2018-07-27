@@ -4,6 +4,7 @@ include_once 'database-class.php';
 if (!isset($_SESSION)) {session_start();}
 if(isset($_SESSION['id_usuario'])){$id_usuario = $_SESSION['id_usuario'];}else{$id_usuario='' ;}
 if(isset($_SESSION['primeiro_nome'])){$primeiro_nome = $_SESSION['primeiro_nome'] ;}else{$primeiro_nome ='';}
+if(isset($_SESSION['nivel'])){$nivel = $_SESSION['nivel'] ;}else{$nivel ='';}
 
 $sql_contador = "update rede_contador set contador = contador+1 where id_contador ='1'"; 
 mysqli_query($conex->mysqli,$sql_contador);
@@ -89,7 +90,7 @@ $dados_tipo = $sql_tipo->fetch_assoc();
 echo '['.$dados_tipo['tipo'].'] ';
 
 ?>
-                 <?php echo date('d/m/Y H:i', strtotime($dados['data']))?>  <?php if($dados['id_usuario'] == $id_usuario){?> <a href="editar.php?id_publicacao=<?php echo $dados['id_publicacao']?>">editar</a><?php }?> </p></div>
+                 <?php echo date('d/m/Y H:i', strtotime($dados['data']))?>  <?php if($dados['id_usuario'] == $id_usuario or $nivel =='2'){?> <a href="editar.php?id_publicacao=<?php echo $dados['id_publicacao']?>">editar</a><?php }?> </p></div>
     
     
       <?php }?>

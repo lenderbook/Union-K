@@ -1,4 +1,5 @@
-  <div class="top">
+
+<div class="top">
       <div class="top-center">
           <div class="top-menu">
               
@@ -7,9 +8,18 @@
           <?php if($id_usuario=='')    {?>
               <a href="login.php"><i class="fas fa-lock-open"></i>  Entrar</a> 
           <?php } else{?>
-              Olá, <b><i><?php echo $primeiro_nome?></i></b>! &nbsp;&nbsp;&nbsp;<a href="sair.php"><i class="fas fa-lock"></i>  Sair</a> 
+              Olá, <b><i><?php echo $primeiro_nome?></i></b>! 
+              
+              <?php if($nivel=='2'){?>
+              &nbsp;&nbsp;&nbsp; <a href="usuarios.php"><i class="fas fa-users"></i>  Usuários</a>
+              <?php }?>
+              
+              &nbsp;&nbsp;&nbsp;<a href="sair.php"><i class="fas fa-lock"></i>  Sair</a> 
               
           <?php }?>
+              
+              
+              
           
           </div>
     
