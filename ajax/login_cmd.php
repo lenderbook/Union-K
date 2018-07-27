@@ -47,12 +47,14 @@ else
 $dados = $result->fetch_assoc();    
 $id_usuario = $dados['id_usuario'];
 $nome = $dados['nome'];
+$nivel = $dados['nivel'];
 $nome = explode(" ", $nome);
 $primeiro_nome = $nome[0];
 
 if (!isset($_SESSION)) {session_start();}
 $_SESSION['id_usuario'] = $id_usuario;
 $_SESSION['primeiro_nome'] = $primeiro_nome;
+$_SESSION['nivel'] = $nivel;
 
 echo "location.href='index.php';";
 

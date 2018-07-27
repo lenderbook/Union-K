@@ -3,7 +3,20 @@ header ('Content-type: text/html; charset=iso-8859-1');
 require_once '../database-class.php';
 
 
-gravar();
+
+//Somente o administrador com nível 2 pode ver esta página
+if (!isset($_SESSION)) {session_start();}
+if(isset($_SESSION['nivel'])){$nivel = $_SESSION['nivel'] ;}else{$nivel ='';}
+if($nivel !='2'){
+echo "document.getElementById('page-response').className ='warning-error';";
+echo "document.getElementById('page-response').innerHTML='Ops, você tem permissão para este procedimento!';";
+
+}
+
+
+if (isset($_POST['cmd'])) {$cmd =$_POST['cmd'];}
+if ($cmd =='gravar'){gravar();}
+if ($cmd =='excluir'){ excluir();}
 
 
 function gravar()
@@ -11,8 +24,10 @@ function gravar()
 
 global $conex;
 
+if (isset($_POST['id_usuario'])) {$id_usuario =$_POST['id_usuario'];}
 if (isset($_POST['nome'])) {$nome =$_POST['nome'];}
 if (isset($_POST['email'])) {$email =$_POST['email'];}
+if (isset($_POST['nivel'])) {$nivel =$_POST['nivel'];}
 if (isset($_POST['senha2'])) {$senha2 =$_POST['senha2'];}
 if (isset($_POST['senha'])) {$senha =$_POST['senha'];}
 if (isset($_POST['lembrete_senha'])) {$lembrete_senha =$_POST['lembrete_senha'];}
@@ -34,6 +49,15 @@ echo "document.getElementById('page-response').innerHTML='Digite um endereço de 
 echo "document.getElementById('email').focus();";
 exit;
 }
+
+if ($nivel == "")
+{
+echo "document.getElementById('page-response').className ='warning-error';";
+echo "document.getElementById('page-response').innerHTML='Selecione o tipo de acesso Usuário ou Administrador.';";
+echo "document.getElementById('email').focus();";
+exit;
+}
+
 
 
 if ($senha == "")
@@ -62,7 +86,6 @@ echo "document.getElementById('senha').focus();";
 exit;
 }
 
-
 if ($lembrete_senha == "")
 {
 echo "document.getElementById('page-response').className ='warning-error';";
@@ -73,41 +96,38 @@ exit;
 
 
 
-$sql = "select id_usuario from rede_usuarios where email ='".$email."'"; 
-$result = mysqli_query($conex->mysqli,$sql);
-$qtde = mysqli_num_rows($result);
-
-if ($qtde >  0){
-echo "document.getElementById('page-response').className ='warning-error';";
-echo "document.getElementById('page-response').innerHTML='Olá, identificamos que o seu e-mail já se encontra cadastrado em nosso banco de dados. ';";
-exit;		
-	
-}
-
-
-
-$sql="Insert into rede_usuarios (nome, email, senha, nivel, lembrete_senha) values ('".$nome."','".$email."',SHA1('".$senha."'),'1','".$lembrete_senha."')";
+$sql="update rede_usuarios set nome ='".$nome."', email ='".$email."', senha =SHA1('".$senha."'), nivel ='".$nivel."', lembrete_senha = '".$lembrete_senha."' where id_usuario = '".$id_usuario."'";
 mysqli_query($conex->mysqli,$sql);
 
-$sql = "select id_usuario from rede_usuarios where nome ='".$nome."' and email = '".$email."' "; 
-$result = mysqli_query($conex->mysqli,$sql);
-$dados = $result->fetch_assoc();
-$id_usuario = $dados['id_usuario'];
+echo "document.getElementById('page-response').className ='warning-success';";
+echo "document.getElementById('page-response').innerHTML='Ok, registro alterado com sucesso.';";
 
-if (!isset($_SESSION)) {session_start();}
 
-$nome = explode(" ", $nome);
-$primeiro_nome= $nome[0];
-
-$_SESSION['id_usuario'] = $id_usuario;
-$_SESSION['primeiro_nome'] = $primeiro_nome;
-
-echo "location.href='index.php'";
 
 }
 
 
 
+function excluir()
+{
+
+global $conex;
+
+if (isset($_POST['id_usuario'])) {$id_usuario =$_POST['id_usuario'];}
+
+$sql="delete from rede_usuarios where id_usuario = '".$id_usuario."'";
+mysqli_query($conex->mysqli,$sql);
+
+echo "document.getElementById('page-response').className ='warning-success';";
+echo "document.getElementById('page-response').innerHTML='Ok, usuário excluído com sucesso.';";
+echo "document.getElementById('id_usuario').value='';";
+echo "document.getElementById('nome').value='';";
+echo "document.getElementById('email').value='';";
+echo "document.getElementById('senha').value='';";
+echo "document.getElementById('idsenha2').value='';";
+
+
+}
 
 
 
