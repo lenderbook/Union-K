@@ -519,10 +519,9 @@ margin-top:40px;
 
 .rodape{
 width:100%;
-display: -webkit-box; display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex;
-justify-content: center;
-align-items: center;
-
+margin-bottom:30px;
+padding:20px;
+box-sizing:border-box;
 }
 
 .logos-rodape{
