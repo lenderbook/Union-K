@@ -14,11 +14,11 @@ Faça a importação do database union_k.sql para o seu servidor de banco de dad
 
 Verifique na raíz no projeto o arquivo config.php:
 
-define("DB_HOST", "nome_do_server_ou_ip");
-define("DB_DATABASE", "nome_database");
-define("DB_USER", "nome_usuario_do_banco");
-define("DB_PSW", "senha_de_acesso");
-define("UPLOAD_PATH", "caminho_para_o_upload_de_arquivos");
+define("DB_HOST", "nome_do_server_ou_ip");<br>
+define("DB_DATABASE", "nome_database");<br>
+define("DB_USER", "nome_usuario_do_banco");<br>
+define("DB_PSW", "senha_de_acesso");<br>
+define("UPLOAD_PATH", "caminho_para_o_upload_de_arquivos");<br>
 
 Você deverá alterar os dados de acordo com as informações de acesso do seu servidor de banco de dados.
 
