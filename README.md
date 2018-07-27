@@ -26,6 +26,13 @@ Os usuários poderão fazer upload de arquivos para seu servidor, assim será ne
 
 Este diretório precisará ter permissão de escrita para que os uploads aconteçam.
 
+<b>Primeiro acesso</b>
+Instalado o sistema, para o realizar o primeiro acesso utilize os dados:
+
+usuário: admin@admin
+senha: admin
+
+Como estes dados você poderá acessar o sistema como administrador e realizar a troca da sua senha e outras informações.
 
 
 
