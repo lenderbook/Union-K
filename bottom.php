@@ -20,6 +20,7 @@ $contador = $dados_contador['contador'];
     
         <div class="logos-rodape"><img src="images/logo_lenderbook.png"></div>
        
+        <div><p><a href="https://github.com/lenderbook/Union-K" target="_blank">  <i class="fab fa-github"></i> Download do projeto em<br>  https://github.com/lenderbook/Union-K </a><p></div>
 
 </div>
     
