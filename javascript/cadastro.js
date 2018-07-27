@@ -17,6 +17,7 @@
  campos =campos+"&email="+escape(document.getElementById("email").value);
   campos =campos+"&senha="+escape(document.getElementById("senha").value);
  campos =campos+"&senha2="+escape(document.getElementById("senha2").value);
+ campos =campos+"&lembrete_senha="+escape(document.getElementById("lembrete_senha").value);
  xmlhttp.send(campos);
 
     
