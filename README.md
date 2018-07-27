@@ -29,7 +29,7 @@ Este diretório precisará ter permissão de escrita para que os uploads aconte�
 <b>Primeiro acesso</b>
 Instalado o sistema, para o realizar o primeiro acesso utilize os dados:
 
-usuário: admin@admin
+usuário: admin@admin<br>
 senha: admin
 
 Como estes dados você poderá acessar o sistema como administrador e realizar a troca da sua senha e outras informações.
