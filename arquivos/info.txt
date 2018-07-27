@@ -1,1 +1,2 @@
 
+Este diretório precisa de permissão de escrita para que o upload funcione.
