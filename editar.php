@@ -132,6 +132,9 @@ $tipo = $dados_tipo['tipo'];
             
             <p> 
                 <input type="button" value="   ALTERAR PUBLICAÇÃO    " class="button-default" onclick="altera_publicacao()"></p>
+            
+            <p><i class="far fa-trash-alt"></i> Para excluir esta publicação,<a href="javascript:;" onclick="excluir()"> clique aqui.</a></p>
+            
         </form>
         <div id="page-response"></div>
     </div>
