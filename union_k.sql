@@ -83,7 +83,8 @@ CREATE TABLE `rede_publicacoes` (
   `url` varchar(150) COLLATE latin1_general_ci DEFAULT NULL,
   `contador` varchar(45) COLLATE latin1_general_ci DEFAULT NULL,
   `arquivo` varchar(150) COLLATE latin1_general_ci DEFAULT NULL,
-  `data` datetime DEFAULT CURRENT_TIMESTAMP,
+  `data` varchar(60) COLLATE latin1_general_ci DEFAULT NULL,
+  `tipo` varchar(45) COLLATE latin1_general_ci DEFAULT NULL,
   PRIMARY KEY (`id_publicacao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -135,4 +136,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-26 23:02:00
+-- Dump completed on 2018-07-31 20:19:10
