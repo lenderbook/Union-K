@@ -75,7 +75,15 @@ exit;
 
 
 
-$sql="Insert into rede_publicacoes (titulo, descricao, url, id_usuario, contador, id_publicacao_tipo, arquivo, tamanho ) values ('".$titulo."','".$descricao."','".$url."','".$id_usuario."','0','".$id_publicacao_tipo."','".$file_name."','".$tamanho."' )";
+$sql_tipo ="SELECT tipo from rede_publicacao_tipo where id_publicacao_tipo ='".$id_publicacao_tipo."'";
+$sql_tipo = mysqli_query($conex->mysqli,$sql_tipo);
+$dados_tipo = $sql_tipo->fetch_assoc();
+$tipo =$dados_tipo['tipo'];
+
+
+$data = date('d/m/Y H:i:s');
+
+$sql="Insert into rede_publicacoes (titulo, descricao, url, id_usuario, contador, id_publicacao_tipo, arquivo, tamanho, data, tipo ) values ('".$titulo."','".$descricao."','".$url."','".$id_usuario."','0','".$id_publicacao_tipo."','".$file_name."','".$tamanho."','".$data."','".$tipo."' )";
 mysqli_query($conex->mysqli,$sql);
 
 
