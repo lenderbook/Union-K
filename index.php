@@ -90,7 +90,7 @@ $dados_tipo = $sql_tipo->fetch_assoc();
 echo '['.$dados_tipo['tipo'].'] ';
 
 ?>
-                 <?php echo date('d/m/Y H:i', strtotime($dados['data']))?>  <?php if($dados['id_usuario'] == $id_usuario or $nivel =='2'){?> <a href="editar.php?id_publicacao=<?php echo $dados['id_publicacao']?>">editar</a><?php }?> </p></div>
+                 <?php echo $dados['data']?>  <?php if($dados['id_usuario'] == $id_usuario or $nivel =='2'){?> <a href="editar.php?id_publicacao=<?php echo $dados['id_publicacao']?>">editar</a><?php }?> </p></div>
     
     
       <?php }?>
