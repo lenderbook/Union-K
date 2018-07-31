@@ -21,10 +21,10 @@ if(isset($_GET['p'])) {$p = $_GET['p'];} //pagina atual
 if(isset($p)) { $p = $p; } else { $p = 1; }
 $qnt = 5;
 $inicio = ($p*$qnt) - $qnt;
-$sql_select = "SELECT id_publicacao, id_publicacao_tipo, id_usuario, titulo, descricao, tamanho, url, contador, arquivo, data  FROM rede_publicacoes where  titulo like '%".$busca."%' or descricao like '%".$busca."%' or url like '%".$busca."%' or arquivo like '%".$busca."%' or data  like '%".$busca."%' order by ".$sort." LIMIT $inicio, $qnt"; 
+$sql_select = "SELECT id_publicacao, id_publicacao_tipo, id_usuario, titulo, descricao, tamanho, url, contador, arquivo, data  FROM rede_publicacoes where  titulo like '%".$busca."%' or descricao like '%".$busca."%' or url like '%".$busca."%' or arquivo like '%".$busca."%' or data  like '%".$busca."%' or tipo  like '%".$busca."%' order by ".$sort." LIMIT $inicio, $qnt"; 
 $sql_query = mysqli_query($conex->mysqli,$sql_select);
 
-$sql_select_all = "SELECT id_publicacao, id_publicacao_tipo, id_usuario, titulo, descricao, tamanho, url, contador, arquivo, data FROM rede_publicacoes where  titulo like '%".$busca."%' or descricao like '%".$busca."%' or url like '%".$busca."%' or arquivo like '%".$busca."%' or data like '%".$busca."%'  "; 
+$sql_select_all = "SELECT id_publicacao, id_publicacao_tipo, id_usuario, titulo, descricao, tamanho, url, contador, arquivo, data FROM rede_publicacoes where  titulo like '%".$busca."%' or descricao like '%".$busca."%' or url like '%".$busca."%' or arquivo like '%".$busca."%' or data like '%".$busca."%' or tipo  like '%".$busca."%'  "; 
 $sql_query_all = mysqli_query($conex->mysqli,$sql_select_all);
 $total_registros = mysqli_num_rows($sql_query_all); 
 $pags = ceil($total_registros/$qnt); 
@@ -89,7 +89,7 @@ $dados_tipo = $sql_tipo->fetch_assoc();
 echo '['.$dados_tipo['tipo'].'] ';
 
 ?>
- <?php echo date('d/m/Y H:i', strtotime($dados['data']))?>  <?php if($dados['id_usuario'] == $id_usuario or $nivel =='2'){?> <a href="editar.php?id_publicacao=<?php echo $dados['id_publicacao']?>">editar</a><?php }?>   </p></div>
+ <?php echo $dados['data']?>  <?php if($dados['id_usuario'] == $id_usuario or $nivel =='2'){?> <a href="editar.php?id_publicacao=<?php echo $dados['id_publicacao']?>">editar</a><?php }?>   </p></div>
     
     
       <?php }?>
